@@ -1,0 +1,1 @@
+# dracut_removal_spel
