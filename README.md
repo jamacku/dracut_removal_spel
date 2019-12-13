@@ -1,1 +1,1 @@
-# dracut_removal_spel
+# dracut removal spel
