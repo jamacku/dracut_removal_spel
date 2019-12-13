@@ -1,1 +1,1 @@
-# dracut removal spel
+# dracut removal spell
