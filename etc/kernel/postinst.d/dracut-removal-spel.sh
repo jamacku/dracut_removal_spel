@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ -f /etc/initrd.conf ] && readarray PACKAGES < /etc/initrd.conf
+
 dnf -y update
 dnf install --setopt=install_weak_deps=False --installroot=/root/initrd/ --releasever=31 \
   systemd \
@@ -8,7 +10,8 @@ dnf install --setopt=install_weak_deps=False --installroot=/root/initrd/ --relea
   vim-minimal \
   lvm2 \
   systemd-udev \
-  kernel-modules
+  kernel-modules \
+  "${PACKAGES[@]}"
 
 touch /root/initrd/etc/initrd-release
 ln -s /lib/systemd/systemd /root/initrd/init
