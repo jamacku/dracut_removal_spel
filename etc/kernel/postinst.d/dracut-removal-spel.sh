@@ -23,5 +23,5 @@ cd /root/inirtd/ || exit 1
 find . | cpio -o -c | gzip -9 > /boot/initrd.img # correct form is initramfs-$(uname --kernel-release)
 
 # generate grup config
-grubby 
-
+grubby --add-kernel="${NEW_KERNEL}" --boot-filesystem="${NEW_INITRD}" --grup --title="${NEW_TITLE}"
+# grubby --add-kernel="/boot/vmlinuz-5.2.18-100.fc29.x86_64" --initrd="/boot/initramfs-5.2.18-100.fc29.x86_64.img" --grub2 --title="New Initramfs"
