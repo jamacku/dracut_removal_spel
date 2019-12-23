@@ -1,5 +1,9 @@
 #!/bin/bash
 
+NEW_KERNEL="$(rpm -q --last kernel | head -1 | awk '{print $1}')"
+NEW_INITRD="nondracut-initramfs-${NEW_KERNEL}.img"
+NEW_TITLE="Fedora ${NEW_KERNEL} dracut FREE"
+
 [ -f /etc/initrd.conf ] && readarray PACKAGES < /etc/initrd.conf
 
 mkdir /root/initrd
@@ -20,9 +24,7 @@ ln -s /lib/systemd/systemd /root/initrd/init
 systemctl --root /root/initrd set-default initrd.target
 
 cd /root/inirtd/ || exit 1
-find . | cpio -o -c | gzip -9 > /boot/initrd.img # correct form is initramfs-$(uname --kernel-release)
-
-# rpm -q --last kernel | head -1
+find . | cpio -o -c | gzip -9 > "/boot/${NEW_INITRD}"
 
 # generate grup config
 grubby --add-kernel="${NEW_KERNEL}" --boot-filesystem="${NEW_INITRD}" --grup --title="${NEW_TITLE}"
