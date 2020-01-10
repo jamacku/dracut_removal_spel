@@ -24,7 +24,6 @@ TEST PACKAGE to build initrd without dracut
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %make_install
 
 
