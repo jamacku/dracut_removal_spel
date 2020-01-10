@@ -30,4 +30,3 @@ rm -rf "$INITRD_DIR"
 
 # generate grup config
 grubby --add-kernel="$KERNEL_IMAGE" --initrd="/boot/${NEW_INITRD}" --grub2 --title="${NEW_TITLE}"
-# grubby --add-kernel="/boot/vmlinuz-5.2.18-100.fc29.x86_64" --initrd="/boot/initramfs-5.2.18-100.fc29.x86_64.img" --grub2 --title="New Initramfs"
