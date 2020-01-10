@@ -25,7 +25,7 @@ ln -s /lib/systemd/systemd "${INITRD_DIR}/init"
 systemctl -q --root "$INITRD_DIR" set-default initrd.target
 
 cd "$INITRD_DIR" || exit 1
-find . | cpio -o -c | gzip -9 > "/boot/${NEW_INITRD}"
+find . | cpio -o -c | gzip -q -9 > "/boot/${NEW_INITRD}"
 rm -rf "$INITRD_DIR"
 
 # generate grup config
