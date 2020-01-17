@@ -7,25 +7,22 @@ License:        GPLv3
 URL:            https://github.com/jamacku/dracut-removal-spell/tree/master
 Source0:        https://github.com/jamacku/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 
-Requires:       systemctl
+Requires:       dnf
+Requires:       bash
+Requires:       systemd
 Requires:       grubby
+Requires:       cpio
+Requires:       gzip
 
 %description
 TEST PACKAGE to build initrd without dracut       
 
-
 %prep
 %autosetup
 
-
 %build
-%configure
-%make_build
-
 
 %install
-%make_install
-
 
 %files
 %license COPYING
@@ -34,7 +31,6 @@ TEST PACKAGE to build initrd without dracut
 %{_sysconfdir}/kernel/postinst.d/dracut-removal-spell.sh
 
 
-
 %changelog
-* Tue Jan  10 2020 Jan Macku <jamacku@redhat.com> - 0.1.1-1
+* Fri Jan 10 2020 Jan Macku <jamacku@redhat.com> - 0.1.1-1
 - Initial package 
