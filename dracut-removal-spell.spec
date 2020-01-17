@@ -1,5 +1,5 @@
 Name:           dracut-removal-spell           
-Version:        0.1.3
+Version:        0.1.4
 Release:        1%{?dist}
 Summary:        TEST PACKAGE to build initrd without dracut       
 
@@ -21,6 +21,7 @@ TEST PACKAGE to build initrd without dracut
 %autosetup
 
 %build
+%define debug_package %{nil}
 
 %install
 mkdir -p %{buildroot}/%{_sysconfdir}/kernel/postinst.d/
@@ -35,5 +36,5 @@ cp -a etc/kernel/postinst.d/%{name}.sh %{buildroot}/%{_sysconfdir}/kernel/postin
 
 
 %changelog
-* Fri Jan 17 2020 Jan Macku <jamacku@redhat.com> - 0.1.3-1
+* Fri Jan 17 2020 Jan Macku <jamacku@redhat.com> - 0.1.4-1
 - Initial package 
