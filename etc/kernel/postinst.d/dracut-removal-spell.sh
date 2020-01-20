@@ -5,7 +5,7 @@ KERNEL_IMAGE="$2"
 NEW_INITRD="nondracut-initramfs-${NEW_KERNEL}.img"
 NEW_TITLE="Fedora ${NEW_KERNEL} dracut FREE"
 
-[ -f /etc/initrd.conf ] && readarray PACKAGES < /etc/initrd.conf
+[ -f /etc/initrd.conf ] && readarray PACKAGES < <(grep "^[^#]" /etc/initrd.conf)
 
 INITRD_DIR=$(mktemp -d) # better would be /var/tmp
 
