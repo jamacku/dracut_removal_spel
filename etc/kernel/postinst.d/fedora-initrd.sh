@@ -26,13 +26,14 @@ touch "${INITRD_DIR}/etc/initrd-release"
 ln -s /lib/systemd/systemd "${INITRD_DIR}/init"
 systemctl -q --root "$INITRD_DIR" set-default initrd.target
 
-echo "$(grep "^[^root]" "${INITRD_DIR}/etc/shadow")" > "${INITRD_DIR}/etc/shadow" && grep "^root" /etc/shadow >> "${INITRD_DIR}/etc/shadow"
+sed -i "/^root/d" "${INITRD_DIR}/etc/shadow" && grep "^root" /etc/shadow >> "${INITRD_DIR}/etc/shadow" # Add root password
 
 if [ -e /etc/selinux/config ] && [ -x /usr/sbin/setfiles ] ; then
   . /etc/selinux/config
   /usr/sbin/setfiles -v -r "${INITRD_DIR}" /etc/selinux/${SELINUXTYPE}/contexts/files/file_contexts "${INITRD_DIR}" > /dev/null
 fi
 
+# build initrd
 cd "$INITRD_DIR" || exit 1
 find . | cpio --quiet -o -c | gzip -q -9 > "/boot/${NEW_INITRD}"
 cd && rm -rf "$INITRD_DIR"
