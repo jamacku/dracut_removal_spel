@@ -1,7 +1,7 @@
-Name:           dracut-removal-spell           
-Version:        0.1.7
+Name:           fedora-initrd           
+Version:        0.1.8
 Release:        1%{?dist}
-Summary:        TEST PACKAGE to build initrd without dracut       
+Summary:        Fedora TEST PACKAGE to build initrd without dracut       
 
 License:        GPLv3     
 URL:            https://github.com/jamacku/%{name}/tree/master
@@ -15,7 +15,7 @@ Requires:       cpio
 Requires:       gzip
 
 %description
-TEST PACKAGE to build initrd without dracut       
+Fedora TEST PACKAGE to build initrd without dracut       
 
 %prep
 %autosetup
@@ -36,5 +36,5 @@ cp -a etc/kernel/postinst.d/%{name}.sh %{buildroot}/%{_sysconfdir}/kernel/postin
 
 
 %changelog
-* Mon Jan 20 2020 Jan Macku <jamacku@redhat.com> - 0.1.7.1
+* Mon Jan 20 2020 Jan Macku <jamacku@redhat.com> - 0.1.8.1
 - Initial package 

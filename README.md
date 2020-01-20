@@ -1,1 +1,1 @@
-# dracut removal spell
+# Fedora initrd
