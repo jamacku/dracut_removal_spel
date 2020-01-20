@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 NEW_KERNEL="$1"
 KERNEL_IMAGE="$2"
 NEW_INITRD="nondracut-initramfs-${NEW_KERNEL}.img"
