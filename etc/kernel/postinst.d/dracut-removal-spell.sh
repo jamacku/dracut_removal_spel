@@ -24,9 +24,11 @@ touch "${INITRD_DIR}/etc/initrd-release"
 ln -s /lib/systemd/systemd "${INITRD_DIR}/init"
 systemctl -q --root "$INITRD_DIR" set-default initrd.target
 
+cp /etc/{passwd,shadow} "${INITRD_DIR}/etc/"
+
 cd "$INITRD_DIR" || exit 1
 find . | cpio --quiet -o -c | gzip -q -9 > "/boot/${NEW_INITRD}"
-rm -rf "$INITRD_DIR"
+cd && rm -rf "$INITRD_DIR"
 
 # generate grup config
 grubby --add-kernel="$KERNEL_IMAGE" --initrd="/boot/${NEW_INITRD}" --grub2 --title="${NEW_TITLE}"
