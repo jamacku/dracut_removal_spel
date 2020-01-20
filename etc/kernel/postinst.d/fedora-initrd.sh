@@ -26,8 +26,7 @@ touch "${INITRD_DIR}/etc/initrd-release"
 ln -s /lib/systemd/systemd "${INITRD_DIR}/init"
 systemctl -q --root "$INITRD_DIR" set-default initrd.target
 
-echo "$(grep "^root" /etc/passwd)" >> "${INITRD_DIR}"/etc/passwd
-echo "$(grep "^root" /etc/shadow)" >> "${INITRD_DIR}"/etc/shadow
+echo "$(grep "^[^root]" "${INITRD_DIR}/etc/shadow")" > "${INITRD_DIR}/etc/shadow" && grep "^root" /etc/shadow >> "${INITRD_DIR}/etc/shadow"
 
 if [ -e /etc/selinux/config ] && [ -x /usr/sbin/setfiles ] ; then
   . /etc/selinux/config
