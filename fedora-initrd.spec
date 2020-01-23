@@ -1,5 +1,5 @@
 Name:           fedora-initrd           
-Version:        0.1.11
+Version:        0.1.12
 Release:        1%{?dist}
 Summary:        Fedora TEST PACKAGE to build initrd without dracut       
 
@@ -36,6 +36,9 @@ cp -a etc/kernel/postinst.d/%{name}.sh %{buildroot}/%{_sysconfdir}/kernel/postin
 
 
 %changelog
+* Thu Jan 23 2020 Jan Macku <jamacku@redhat.com> - 0.1.12-1
+- Shrink down size of initrd
+
 * Thu Jan 23 2020 Jan Macku <jamacku@redhat.com> - 0.1.11-1
 - Shrink down size of initrd
 
