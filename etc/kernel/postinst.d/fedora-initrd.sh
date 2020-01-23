@@ -11,6 +11,9 @@ NEW_TITLE="Fedora ${NEW_KERNEL} dracut FREE"
 
 INITRD_DIR=$(mktemp -d) # better would be /var/tmp
 
+mkdir -p "${INITRD_DIR}"/etc/rpm && \
+echo "%_install_langs C:en:en_US:en_US.UTF-8" >> "${INITRD_DIR}"/etc/rpm/macros.image-language-conf
+
 dnf -y -q update
 dnf -y -q install --setopt=install_weak_deps=False --installroot="$INITRD_DIR" --releasever=31 --setopt=tsflags=nodocs \
   systemd \
