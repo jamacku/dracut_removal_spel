@@ -12,7 +12,7 @@ NEW_TITLE="Fedora ${NEW_KERNEL} dracut FREE"
 INITRD_DIR=$(mktemp -d) # better would be /var/tmp
 
 dnf -y -q update
-dnf -y -q install --setopt=install_weak_deps=False --installroot="$INITRD_DIR" --releasever=31 \
+dnf -y -q install --setopt=install_weak_deps=False --installroot="$INITRD_DIR" --releasever=31 --setopt=tsflags=nodocs \
   systemd \
   passwd \
   fedora-release \
